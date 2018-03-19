@@ -31,11 +31,9 @@ class LinkedList
   def insert(index, data)
     @count += 1
     @current_node = @head
-
     (index - 1).times do
       @current_node = @current_node.next_node
     end
-
     new_node = Node.new(data)
     new_node.next_node = @current_node.next_node
     @current_node.next_node = new_node
@@ -43,10 +41,11 @@ class LinkedList
 
   def to_string
     return 'There are no beats!' if @head.nil?
-    sounds = ""
+    sounds = @head.data + ' '
     if @count > 1
       (@count - 1).times do
         sounds += @head.next_node.data
+        # binding.pry
       end
     end
     sounds

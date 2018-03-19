@@ -37,6 +37,13 @@ class LinkedListTest < Minitest::Test
 
   def test_nodes_in_list_can_be_shown_as_string
     list.append('boop')
-    assert_equal 'beep', list.to_string
+    list.append('beep')
+
+    assert_equal 'boop beep', list.to_string
+  end
+
+  def test_when_list_is_empty_returns_error_message_to_string
+    result = 'There are no beats!'
+    assert_equal result, list.to_string
   end
 end
