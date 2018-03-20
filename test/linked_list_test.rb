@@ -28,11 +28,13 @@ class LinkedListTest < Minitest::Test
     list.append('beep')
     list.append('boop')
     list.append('woop')
+
     assert_equal 'beep', list.head.data
     assert_equal 'woop', list.head.next_node.next_node.data
   end
 
   def test_list_uses_prepend_to_add_node_to_head
+    skip
     list.prepend('doodlybop')
     assert_equal 'doodlybop', list.head.data
   end
@@ -60,15 +62,11 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_nodes_in_list_can_be_shown_as_string
-    skip
     list.append('boop')
     list.append('beep')
-    assert_equal 'boop beep', list.to_string
-
-    list.prepend('blub')
-    list.prepend('bumb')
-
-    assert_equal '', list.to_string
+    list.append('bump')
+    list.append('woodlydoop')
+    assert_equal 'boop beep bump woodlydoop', list.to_string
   end
 
   def test_when_list_is_empty_returns_error_message_to_string
