@@ -16,7 +16,6 @@ class LinkedList
     else
       @head.next_node = Node.new(data)
     end
-    data
   end
 
   def prepend(data)
@@ -41,11 +40,10 @@ class LinkedList
 
   def to_string
     return 'There are no beats!' if @head.nil?
-    sounds = @head.data + ' '
+    sounds = @head.data
     if @count > 1
       (@count - 1).times do
-        sounds += @head.next_node.data
-        # binding.pry
+        sounds += ' ' + @head.next_node.data
       end
     end
     sounds
