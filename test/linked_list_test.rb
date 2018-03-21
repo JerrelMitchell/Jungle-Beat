@@ -24,11 +24,15 @@ class LinkedListTest < Minitest::Test
     assert_equal 'doodlydoo', list.head.data
   end
 
+  def test_list_next_node_after_head_equals_nil
+    list.append('beep')
+    assert_nil list.head.next_node
+  end
+
   def test_list_uses_append_to_add_node_to_end_of_list
     list.append('beep')
     list.append('boop')
     list.append('woop')
-
     assert_equal 'beep', list.head.data
     assert_equal 'woop', list.head.next_node.next_node.data
   end
@@ -40,16 +44,12 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_list_uses_prepend_to_add_node_to_start_of_list
-    skip
     list.prepend('beep')
     list.prepend('boop')
-    list.prepend('woop')
-    assert_equal 'woop', list.head.data
-  end
-
-  def test_list_next_node_after_head_equals_nil
-    list.append('beep')
-    assert_nil list.head.next_node
+    list.prepend('whip')
+    assert_equal 'whip', list.head.data
+    assert_equal 'boop', list.head.next_node.data
+    assert_equal 'beep', list.head.next_node.next_node.data
   end
 
   def test_list_counts_number_of_nodes
@@ -59,6 +59,10 @@ class LinkedListTest < Minitest::Test
     list.append('beep')
     list.append('doomp')
     assert_equal 3, list.count
+
+    list.append('skipa')
+    list.append('scoot')
+    assert_equal 5, list.count
   end
 
   def test_nodes_in_list_can_be_shown_as_string

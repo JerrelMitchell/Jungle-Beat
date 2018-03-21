@@ -2,15 +2,23 @@ require './lib/node'
 require 'pry'
 
 class LinkedList
-  attr_reader :head, :count
+  attr_reader :head
 
   def initialize(head = nil)
     @head = head
-    @count = 0
+  end
+
+  def count
+    count = 0
+    current = head
+    until current.nil?
+      count += 1
+      current = current.next_node
+    end
+    count
   end
 
   def append(data)
-    @count += 1
     return @head = Node.new(data) if head.nil?
     current = head
     current = current.next_node until current.next_node.nil?
@@ -18,10 +26,17 @@ class LinkedList
     data
   end
 
-  # def prepend(data)
-  #   @count += 1
-  #   return @head = Node.new(data) if @head.nil?
-  # end
+  def prepend(data)
+    return @head = Node.new(data) if head.nil?
+    current = head
+
+    until current.next_node.nil?
+
+
+    # current.next_node = head
+    # current.next_node.next_node = current.next_node
+    # current.next_node.next_node.next_node = current.next_node.next_node
+  end
 
   # def insert(index, data)
   #   @count += 1
