@@ -1,12 +1,11 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/node'
 require './lib/linked_list'
 require 'pry'
 
+# tests methods created in linked list class
 class LinkedListTest < Minitest::Test
   attr_reader :list
-
   def setup
     @list = LinkedList.new
   end
@@ -19,7 +18,7 @@ class LinkedListTest < Minitest::Test
     assert_nil list.head
   end
 
-  def test_list_uses_append_to_add_node_to_head
+  def test_empty_list_uses_append_to_add_node_to_head
     list.append('doodlydoo')
     assert_equal 'doodlydoo', list.head.data
   end
@@ -34,10 +33,11 @@ class LinkedListTest < Minitest::Test
     list.append('boop')
     list.append('woop')
     assert_equal 'beep', list.head.data
+    assert_equal 'boop', list.head.next_node.data
     assert_equal 'woop', list.head.next_node.next_node.data
   end
 
-  def test_list_uses_prepend_to_add_node_to_head
+  def test_empty_list_uses_prepend_to_add_node_to_head
     list.prepend('doodlybop')
     assert_equal 'doodlybop', list.head.data
   end
@@ -49,6 +49,19 @@ class LinkedListTest < Minitest::Test
     assert_equal 'whip', list.head.data
     assert_equal 'boop', list.head.next_node.data
     assert_equal 'beep', list.head.next_node.next_node.data
+  end
+
+  def test_empty_list_uses_insert_to_add_node_to_head
+    list.insert(1, 'womp')
+    assert_equal 'womp', list.head.data
+  end
+
+  def test_list_uses_insert_to_add_node_to_set_node_in_list
+    list.insert(1, 'beep')
+    list.insert(1, 'boop')
+    list.insert(2, 'woop')
+    # binding.pry
+    assert_equal 'boop', list.head.next_node.data
   end
 
   def test_list_counts_number_of_nodes
