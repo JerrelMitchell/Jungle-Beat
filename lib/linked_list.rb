@@ -1,5 +1,4 @@
 require './lib/node'
-require 'pry'
 
 class LinkedList
   attr_reader :head
@@ -19,23 +18,19 @@ class LinkedList
   end
 
   def append(data)
-    return @head = Node.new(data) if head.nil?
+    new_node = Node.new(data)
+    return @head = new_node if head.nil?
     current = head
     current = current.next_node until current.next_node.nil?
-    current.next_node = Node.new(data)
+    current.next_node = new_node
     data
   end
 
   def prepend(data)
-    return @head = Node.new(data) if head.nil?
-    current = head
-
-    until current.next_node.nil?
-
-
-    # current.next_node = head
-    # current.next_node.next_node = current.next_node
-    # current.next_node.next_node.next_node = current.next_node.next_node
+    new_node = Node.new(data)
+    return @head = new_node if @head.nil?
+    new_node.next_node = @head
+    @head = new_node
   end
 
   # def insert(index, data)

@@ -38,7 +38,6 @@ class LinkedListTest < Minitest::Test
   end
 
   def test_list_uses_prepend_to_add_node_to_head
-    skip
     list.prepend('doodlybop')
     assert_equal 'doodlybop', list.head.data
   end
