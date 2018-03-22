@@ -27,6 +27,7 @@ class LinkedList
   def insert(index, data)
     new_node = Node.new(data)
     return @head = new_node if head.nil?
+    return append(data) if index >= count
     current = head
     (index - 1).times do
       current = current.next_node
