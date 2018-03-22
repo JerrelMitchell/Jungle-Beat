@@ -37,14 +37,14 @@ class LinkedList
 
   def to_string
     return 'There are no beats!' if head.nil?
-    current = @head
-    string = ''
-    string << current.data
+    current = head
+    sounds = ''
+    sounds += current.data
     until current.next_node.nil?
       current = current.next_node
-      string << " #{current.data}"
+      sounds += " #{current.data}"
     end
-    string
+    sounds
   end
 
   def count
@@ -55,5 +55,26 @@ class LinkedList
       current = current.next_node
     end
     count
+  end
+
+  def includes?(data)
+    current = head
+    return current.data == data if current.next_node.nil?
+    until current.next_node.nil?
+      current = current.next_node
+      current.data == data
+    end
+  end
+
+  def find(index, data_tally)
+    return nil if index.zero? || data_tally.zero?
+    current = head
+    until data_tally.zero?
+      data_tally -= 1
+      (index - 1).times do
+        current = current.next_node
+      end
+      current.data
+    end
   end
 end
